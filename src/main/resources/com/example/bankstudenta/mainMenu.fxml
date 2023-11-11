@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="558.0" prefWidth="545.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bankstudenta.Controller">
+   <children>
+      <VBox prefHeight="559.0" prefWidth="175.0" style="-fx-background-color: #7B249E;">
+         <children>
+            <Pane prefHeight="153.0" prefWidth="182.0">
+               <children>
+                  <FontAwesomeIconView fill="WHITE" glyphName="BANK" layoutX="14.0" layoutY="87.0" size="30" text="" />
+                  <Label graphicTextGap="5.0" layoutX="48.0" layoutY="64.0" text="BankStudenta" textFill="WHITE">
+                     <font>
+                        <Font name="Candara Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <ToggleButton fx:id="btnLogowanie" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" selected="true" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Logowanie" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="16.0" />
+               </font>
+            </ToggleButton>
+            <ToggleButton fx:id="btnRejestracja" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Rejestracja" textFill="WHITE">
+               <font>
+                  <Font name="Candara Bold" size="16.0" />
+               </font>
+            </ToggleButton>
+         </children>
+      </VBox>
+      <StackPane layoutX="175.0" prefHeight="559.0" prefWidth="371.0">
+         <children>
+            <Pane fx:id="pRegisterForm" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #0A0A0A;">
+               <children>
+                  <TextField fx:id="RegisterTfNumerIndeksu" layoutX="13.0" layoutY="153.0" prefHeight="20.0" prefWidth="332.0" promptText="Numer indeksu" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <HBox layoutX="112.0" layoutY="49.0" prefHeight="30.0" prefWidth="134.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Rejestracja">
+                           <font>
+                              <Font name="Candara Bold" size="27.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <TextField fx:id="RegisterTfNazwisko" layoutX="13.0" layoutY="273.0" prefHeight="20.0" prefWidth="332.0" promptText="Nazwisko" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="RegisterTfImie" layoutX="13.0" layoutY="213.0" prefHeight="20.0" prefWidth="332.0" promptText="Imię" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="RegisterTfHaslo" layoutX="13.0" layoutY="333.0" prefHeight="20.0" prefWidth="332.0" promptText="Hasło" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="RegisterTfPowtorzHaslo" layoutX="13.0" layoutY="393.0" prefHeight="20.0" prefWidth="332.0" promptText="Powtórz hasło" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Separator fx:id="Separator112" layoutX="13.0" layoutY="108.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
+                  <Separator fx:id="Separator113" layoutX="12.0" layoutY="463.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
+                  <Button fx:id="RegisterBtnZarejestruj" layoutX="133.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zarejestruj" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="RegisterClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #0A0A0A;">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" onMouseClicked="#handleClicks" size="20" text="" wrappingWidth="12.514243125915527" />
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="pLoginForm" prefHeight="559.0" prefWidth="351.0" style="-fx-background-color: #0A0A0A;">
+               <children>
+                  <HBox layoutX="33.0" layoutY="89.0" prefHeight="30.0" prefWidth="291.0">
+                     <children>
+                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w banku studenta!">
+                           <font>
+                              <Font name="Candara Bold" size="27.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </HBox>
+                  <Separator fx:id="Separator11" layoutX="13.0" layoutY="152.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
+                  <TextField fx:id="LoginTfNumerIndeksu" layoutX="12.0" layoutY="221.0" prefHeight="20.0" prefWidth="332.0" promptText="Numer indeksu" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="LoginTHaslo" layoutX="13.0" layoutY="296.0" prefHeight="20.0" prefWidth="332.0" promptText="Hasło" style="-fx-border-color: #7B249E; -fx-background-color: #0A0A0A; -fx-background-insets: 0; -fx-border-radius: 20; -fx-highlight-fill: null; -fx-highlight-text-fill: null;">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+                  <Separator fx:id="Separator111" layoutX="13.0" layoutY="389.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
+                  <Button fx:id="LoginBtnZaloguj" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zaloguj" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="LoginClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #0A0A0A;">
+                     <graphic>
+                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" onMouseClicked="#handleClicks" size="20" text="" wrappingWidth="12.514243125915527" />
+                     </graphic>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

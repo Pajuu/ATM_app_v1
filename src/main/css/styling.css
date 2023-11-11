@@ -1,0 +1,16 @@
+.btnLogowanie
+{
+-fx-background-color: #7B249E;
+}
+.btnLogowanie:hover
+{
+-fx-background-color: #B33BE3;
+}
+.btnLogowanie:pressed
+{
+-fx-background-color: #C945FD;
+}
+.btnLogowanie:selected
+{
+-fx-background-color: #6E218D;
+}
