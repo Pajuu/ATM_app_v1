@@ -1,24 +1,19 @@
 package com.example.bankstudenta;
-
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.Pane;
-
 import java.net.URL;
 import java.util.ResourceBundle;
+import User.User;
 
 public class Controller implements Initializable {
-
+    private User u = new User();
     @FXML
     private Button LoginBtnZaloguj;
-
 
     @FXML
     private TextField LoginTHaslo;
@@ -86,4 +81,12 @@ public class Controller implements Initializable {
         }
     }
 
+    @FXML
+    private void handleRegistration() {
+        this.u.addUserToDB(Integer.parseInt(RegisterTfNumerIndeksu.getText()), RegisterTfImie.getText(), RegisterTfNazwisko.getText(), RegisterTfHaslo.getText(), RegisterTfPowtorzHaslo.getText());
+    }
+    @FXML
+    private void handleLogin(){
+        this.u.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
+    }
 }

@@ -80,7 +80,7 @@
                   </TextField>
                   <Separator fx:id="Separator112" layoutX="13.0" layoutY="108.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
                   <Separator fx:id="Separator113" layoutX="12.0" layoutY="463.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
-                  <Button fx:id="RegisterBtnZarejestruj" layoutX="133.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zarejestruj" textFill="WHITE">
+                  <Button fx:id="RegisterBtnZarejestruj" onAction="#handleRegistration" layoutX="133.0" layoutY="488.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zarejestruj" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -115,7 +115,7 @@
                      </font>
                   </TextField>
                   <Separator fx:id="Separator111" layoutX="13.0" layoutY="389.0" opacity="0.15" prefHeight="3.0" prefWidth="332.0" />
-                  <Button fx:id="LoginBtnZaloguj" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zaloguj" textFill="WHITE">
+                  <Button fx:id="LoginBtnZaloguj" onAction="#handleLogin" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 20;" text="Zaloguj" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
