@@ -14,3 +14,54 @@
 {
 -fx-background-color: #6E218D;
 }
+
+
+.background
+{
+-fx-background-color: linear-gradient(to bottom, #7B249E 45%, #030000);
+}
+
+.textFields
+{
+-fx-border-color:  #7B249E;
+-fx-background-color:  #030000;
+-fx-background-insets: 0;
+-fx-border-radius: 20;
+-fx-highlight-fill: null;
+-fx-highlight-text-fill: null;
+-fx-prompt-text-fill: white;
+-fx-text-fill: white;
+}
+
+
+.tab
+{
+	-fx-primary-color: #007acc;
+	-fx-secondary-color: #4B6EAF;
+
+	-fx-focus-color: #4B6EAF;
+}
+
+.tab-header-area .tab-header-background
+{
+ 	-fx-background-color: #7B249E;
+}
+
+.tab-pane .tab:selected
+{
+	-fx-background-color: #4B6EAF;
+	-fx-background-insets: 0 0 0 0;
+	-fx-background-radius: 0 0 0 0;
+}
+
+.tab-pane
+ {
+	-fx-background-color: transparent;
+	-fx-tab-min-width: 115px;
+	-fx-tab-min-height: 40px;
+	-fx-tab-max-height: 66px;
+}
+.tab-pane .tab
+{
+	-fx-background-color: transparent;
+}
