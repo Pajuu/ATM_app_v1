@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="807.0" styleClass="background" stylesheets="@../../../../css/styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Pane layoutX="-5.0" prefHeight="64.0" prefWidth="813.0">
+         <children>
+            <Text fill="WHITE" layoutX="322.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj" wrappingWidth="61.1982421875">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text fx:id="name_and_index" layoutX="400.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="182.39999389648438" />
+            <Text fill="WHITE" layoutX="697.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępne środki" wrappingWidth="109.719482421875" />
+            <Text fx:id="students_money" layoutX="674.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.336669921875" />
+         </children>
+      </Pane>
+      <TabPane layoutX="-5.0" layoutY="64.0" prefHeight="382.0" prefWidth="430.0" styleClass="tab-header-background" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab text="Wpłata">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.2" text="Wpłać" />
+                        <TextField layoutX="101.0" layoutY="127.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+            <Tab text="Wypłata">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" text="Wypłać" />
+                        <TextField layoutX="101.0" layoutY="127.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                     </children></AnchorPane>
+               </content>
+            </Tab>
+          <Tab text="Przelew">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="278.0">
+                     <children>
+                        <TextField layoutX="101.0" layoutY="170.0" prefHeight="42.0" prefWidth="190.0" promptText="Opis" />
+                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.2" text="Przelej" />
+                        <TextField layoutX="101.0" layoutY="78.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+      <TableView layoutX="391.0" layoutY="137.0" prefHeight="306.0" prefWidth="416.0">
+        <columns>
+          <TableColumn prefWidth="92.80001831054688" text="Data" />
+          <TableColumn prefWidth="220.00003051757812" text="Opis" />
+            <TableColumn prefWidth="99.199951171875" text="Kwota" />
+        </columns>
+      </TableView>
+      <Pane layoutX="399.0" layoutY="91.0" prefHeight="42.0" prefWidth="408.0">
+         <children>
+            <Text layoutX="1.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historia">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
