@@ -152,6 +152,7 @@ public class Controller implements Initializable {
         stage.setY(150);
         stage.setX(400);
         stage.show();
+        
     }
 
     @FXML
