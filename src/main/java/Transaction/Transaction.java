@@ -17,7 +17,7 @@ public class Transaction {
     }
 
     //Methods
-    public boolean addTransactionToDB(){
+    public void addTransactionToDB(){
         try{
             Connection connection = new DB_Connection().makeConnection();
             String query = "INSERT INTO transactions (from_id, to_id, amount, date) "
@@ -29,23 +29,10 @@ public class Transaction {
             preparedStatement.setTimestamp(4, Timestamp.from(Instant.now()));
             preparedStatement.execute();
             connection.close();
-            return true;
         }catch (Exception e) {
             System.out.println("Problem z transakcja: ");
             System.out.println(e.getMessage());
-            return false;
         }
-    }
-
-    //Getters
-    public float getAmount() {
-        return amount;
-    }
-    public int getFromIndex() {
-        return fromIndex;
-    }
-    public int getToIndex() {
-        return toIndex;
     }
 
     @Override

@@ -1,15 +1,20 @@
 package com.example.bankstudenta;
+
 import Transaction.Transaction;
+import User.User;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -17,9 +22,6 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import User.User;
-import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 public class ControllerAfterLogin extends Controller implements Initializable  {
     @FXML
@@ -113,19 +115,13 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
 
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
             stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    xOffSet[0] = mouseEvent.getX();
-                    yOffSet[0] = mouseEvent.getY();
-                }
+            root.setOnMousePressed(mouseEvent -> {
+                xOffSet[0] = mouseEvent.getX();
+                yOffSet[0] = mouseEvent.getY();
             });
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
-                    stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
-                }
+            root.setOnMouseDragged(mouseEvent -> {
+                stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
+                stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
             });
             scene = new Scene(root);
             stage.setScene(scene);
@@ -182,7 +178,7 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
         public String getDate() {
             LocalDate a = LocalDate.parse(date.substring(0,date.length()-9));
 
-            return String.valueOf(DateTimeFormatter.ofPattern("dd.MM.yyyy").format(a));
+            return DateTimeFormatter.ofPattern("dd.MM.yyyy").format(a);
         }
     }
 }

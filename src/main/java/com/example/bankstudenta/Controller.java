@@ -1,6 +1,7 @@
 package com.example.bankstudenta;
+
+import User.User;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -10,14 +11,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
-import User.User;
-import javafx.stage.Stage;
 
 public class Controller implements Initializable {
     public Stage stage;
@@ -38,9 +38,6 @@ public class Controller implements Initializable {
     private ToggleButton btnLogowanie, btnRejestracja;
 
     @FXML
-    private Pane pLoginForm;
-
-    @FXML
     private Pane pRegisterForm;
 
 
@@ -50,7 +47,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    private void handleClicks(ActionEvent event) throws IOException {
+    private void handleClicks(ActionEvent event) {
         if(event.getSource() == btnLogowanie){
             pRegisterForm.toBack();
             btnLogowanie.setSelected(true);
@@ -86,19 +83,13 @@ public class Controller implements Initializable {
 
             root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("screenAfterLogin.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-            root.setOnMousePressed(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    xOffSet[0] = mouseEvent.getX();
-                    yOffSet[0] = mouseEvent.getY();
-                }
+            root.setOnMousePressed(mouseEvent -> {
+                xOffSet[0] = mouseEvent.getX();
+                yOffSet[0] = mouseEvent.getY();
             });
-            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-                @Override
-                public void handle(MouseEvent mouseEvent) {
-                    stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
-                    stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
-                }
+            root.setOnMouseDragged(mouseEvent -> {
+                stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
+                stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
             });
 
             scene = new Scene(root);
@@ -108,5 +99,7 @@ public class Controller implements Initializable {
             stage.show();
 
         }
+        LoginTfNumerIndeksu.setText("");
+        LoginTHaslo.setText("");
     }
 }

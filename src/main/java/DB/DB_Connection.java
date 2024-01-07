@@ -1,11 +1,6 @@
 package DB;
-
-
-import javax.xml.transform.Source;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
 public class DB_Connection {
     public DB_Connection() {}

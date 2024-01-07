@@ -18,13 +18,6 @@ public class User {
     public User() {
     }
 
-    private User(int index, float balance, String first_name, String last_name) {
-        this.index = index;
-        this.balance = balance;
-        this.first_name = first_name;
-        this.last_name = last_name;
-    }
-
     //Methods
     public void addUserToDB(int index, String first_name, String last_name ,String p1, String p2){
         try{
