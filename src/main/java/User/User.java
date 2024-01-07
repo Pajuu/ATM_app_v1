@@ -15,8 +15,6 @@ public class User {
     private String first_name, last_name;
 
     //Constructors
-
-
     public User() {
     }
 
@@ -60,11 +58,12 @@ public class User {
                     this.last_name = resultSet.getString("last_name");
                     this.index = resultSet.getInt("student_id");
                     this.balance = this.getUserBalanceFromDB();
-                }else{
-                    throw new Exception("Złe hasło lub indeks");
                 }
+                connection.close();
+            }else{
+                connection.close();
+                throw new Exception("Zły indeks lub hasło!");
             }
-            connection.close();
         }catch (Exception e){
             System.out.println( e.getMessage());
         }
@@ -84,8 +83,8 @@ public class User {
             return this.balance;
         }catch (Exception e){
             System.out.println(e.getMessage());
+            return null;
         }
-        return null;
     }
 
     public List<String[]> getUserTransferHistory() {
@@ -105,15 +104,12 @@ public class User {
                     "FROM transactions as t\n" +
                     "Inner JOIN users as f_u ON t.from_id = f_u .id\n" +
                     "Inner JOIN users as t_u ON t.to_id = t_u .id\n" +
-                    "WHERE t.from_id = "+this.getId()+" or t.to_id = "+this.getId();
+                    "WHERE t.from_id = "+this.getId()+" or t.to_id = "+this.getId()+"\n" +
+                    "ORDER BY t.date";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-
                 String[] record = {rs.getString("date"), rs.getString("from_name"),rs.getString("from_last_name"), rs.getString("to_name"),rs.getString("to_last_name"),rs.getString("amount"), rs.getString("from_id"),rs.getString("to_id"),};
-//                String record = rs.getString("date")+"   | OD: "+rs.getString("from_name")+" "+rs.getString("from_last_name")+
-//                            " ------> DO: "+rs.getString("to_name")+" "+rs.getString("to_last_name")+
-//                        " |     "+rs.getString("amount")+"zł ";
                 transactions.add(record);
             }
             connection.close();
@@ -124,22 +120,25 @@ public class User {
             return new ArrayList<>();
         }
     }
+
     public int getIdFromDB(int student_id){
-        int result = 0;
+        int result;
         try{
             Connection connection = new DB_Connection().makeConnection();
             String query = "SELECT id FROM users WHERE student_id ="+student_id;
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()){
+            if (resultSet.next()){
                 result = resultSet.getInt("id");
+                return result;
             }
             connection.close();
-            return result;
+
+            throw new RuntimeException("Nie znaleziono użytkownika o takim indeksie (User.java)");
         }catch (Exception e){
             System.out.println(e.getMessage());
+            return -500;
         }
-        return result;
     }
 
     //getters

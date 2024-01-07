@@ -1,5 +1,4 @@
 package com.example.bankstudenta;
-import User.User;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -9,16 +8,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
+import java.util.Objects;
 
 public class Main extends Application {
-
-    private double xOffSet = 0;
-    private double yOffSet = 0;
+    private double xOffSet = 0, yOffSet = 0;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("mainMenu.fxml"));
-
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
         root.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {

@@ -1,5 +1,4 @@
 package com.example.bankstudenta;
-import Transaction.Transaction;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -9,21 +8,16 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import User.User;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
 
 public class Controller implements Initializable {
     public Stage stage;
@@ -31,46 +25,17 @@ public class Controller implements Initializable {
     public Parent root;
     public static User user = new User();
 
-
+    @FXML
+    private TextField LoginTHaslo, LoginTfNumerIndeksu;
 
     @FXML
-    private Button LoginBtnZaloguj;
+    private Button LoginClose,RegisterClose;
 
     @FXML
-    private TextField LoginTHaslo;
+    private TextField RegisterTfHaslo, RegisterTfImie, RegisterTfNazwisko,RegisterTfNumerIndeksu,RegisterTfPowtorzHaslo;
 
     @FXML
-    private TextField LoginTfNumerIndeksu;
-
-    @FXML
-    private Button RegisterBtnZarejestruj;
-
-    @FXML
-    private Button LoginClose;
-
-    @FXML
-    private Button RegisterClose;
-
-    @FXML
-    private TextField RegisterTfHaslo;
-
-    @FXML
-    private TextField RegisterTfImie;
-
-    @FXML
-    private TextField RegisterTfNazwisko;
-
-    @FXML
-    private TextField RegisterTfNumerIndeksu;
-
-    @FXML
-    private TextField RegisterTfPowtorzHaslo;
-
-    @FXML
-    private ToggleButton btnLogowanie;
-
-    @FXML
-    private ToggleButton btnRejestracja;
+    private ToggleButton btnLogowanie, btnRejestracja;
 
     @FXML
     private Pane pLoginForm;
@@ -103,18 +68,23 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleRegistration() {
-        this.user.addUserToDB(Integer.parseInt(RegisterTfNumerIndeksu.getText()), RegisterTfImie.getText(), RegisterTfNazwisko.getText(), RegisterTfHaslo.getText(), RegisterTfPowtorzHaslo.getText());
+        user.addUserToDB(Integer.parseInt(RegisterTfNumerIndeksu.getText()), RegisterTfImie.getText(), RegisterTfNazwisko.getText(), RegisterTfHaslo.getText(), RegisterTfPowtorzHaslo.getText());
+        RegisterTfNumerIndeksu.setText("");
+        RegisterTfImie.setText("");
+        RegisterTfNazwisko.setText("");
+        RegisterTfHaslo.setText("");
+        RegisterTfPowtorzHaslo.setText("");
     }
+
     @FXML
     private void handleLogin(ActionEvent event) throws IOException{
-
-        this.user.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
-        if (this.user.isLoggedIn()){
+        user.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
+        if (user.isLoggedIn()){
             final double[] xOffSet = {0};
             final double[] yOffSet = {0};
 
 
-            root = FXMLLoader.load(getClass().getResource("screenAfterLogin.fxml"));
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("screenAfterLogin.fxml")));
             stage = (Stage)((Node)event.getSource()).getScene().getWindow();
             root.setOnMousePressed(new EventHandler<MouseEvent>() {
                 @Override
@@ -131,7 +101,6 @@ public class Controller implements Initializable {
                 }
             });
 
-
             scene = new Scene(root);
             stage.setScene(scene);
             stage.setY(150);
@@ -139,7 +108,5 @@ public class Controller implements Initializable {
             stage.show();
 
         }
-
     }
-
 }

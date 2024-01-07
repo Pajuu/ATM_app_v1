@@ -6,85 +6,50 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.Pane;
-
 import java.io.IOException;
 import java.net.URL;
-import java.sql.Timestamp;
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
 import java.util.Objects;
 import java.util.ResourceBundle;
 import User.User;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.stage.WindowEvent;
-//Tekst skladajacy sie z imienia i indeksu z bazy danych
-
-import javafx.fxml.FXML;
-
-
-
 
 public class ControllerAfterLogin extends Controller implements Initializable  {
     @FXML
-    private Text name_and_index;
+    private Text name_and_index, students_money;
 
-    //aktualny stan konta z bazy danych
-    @FXML
-    private Text students_money;
-
-    //tabelka z historia wszystkich transakcji
     @FXML
     private TableView<historyRecord> transaction_history_table;
 
     @FXML
-    private TableColumn historyDateCol, historyFromCol, historyToCol, historyAmountCol;
+    private TableColumn historyDateCol, historyToCol, historyAmountCol;
 
     @FXML
-    private Button AppBtnPayment;
+    private TextField WithdrawText, DepositText, transferToIndeks, transferAmount;
 
-    @FXML
-    private Button AppBtnTransfer;
-
-    @FXML
-    private Button AppBtnal;
-
-    @FXML
-    private TextField WithdrawText;
-
-    @FXML
-    private TextField DepositText;
-
-    @FXML
-    private TextField transferToIndeks;
-
-    @FXML
-    private TextField transferAmount;
 
     private void showClientInfo(){
-        this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex());
-        this.students_money.setText(user.getBalance()+" zł");
-        this.transaction_history_table.getItems().clear();
+        DecimalFormat df = new DecimalFormat("#.00");
 
+        this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex());
+        this.students_money.setText( df.format(user.getBalance())+" zł");
+        this.transaction_history_table.getItems().clear();
 
         historyDateCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("date"));
         historyAmountCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("amount"));
         historyToCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("to"));
 
-
         for (String[] element:user.getUserTransferHistory() ) {
-            historyRecord r = new historyRecord(element[1]+" "+element[2],element[3]+" "+element[4], element[5], element[0], element[6], element[7]);
+            historyRecord r = new historyRecord(element[1] + " " + element[2], element[3] + " " + element[4], element[5], element[0], element[6], element[7]);
             this.transaction_history_table.getItems().add(r);
         }
-
     }
 
     @Override
@@ -94,13 +59,21 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
 
     @FXML
     private void handleWithdraw() {
-        float kwota = Float.parseFloat(WithdrawText.getText());
-        Transaction t = new Transaction(kwota, user.getId(), 0);
-        t.addTransactionToDB();
-        WithdrawText.setText("");
-        user.getUserBalanceFromDB();
-        showClientInfo();
+        try{
+            float kwota = Float.parseFloat(WithdrawText.getText());
+            if(kwota> user.getBalance()) { throw new RuntimeException("Brak środków na koncie!");}
+
+            Transaction t = new Transaction(kwota, user.getId(), 0);
+            t.addTransactionToDB();
+            WithdrawText.setText("");
+            user.getUserBalanceFromDB();
+            showClientInfo();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
+
     @FXML
     private void handleDeposit() {
         float kwota = Float.parseFloat(DepositText.getText());
@@ -113,24 +86,28 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
 
     @FXML
     private void handleTransfer() {
+        try{
+            float kwota = Float.parseFloat(transferAmount.getText());
+            int toID = new User().getIdFromDB(Integer.parseInt(transferToIndeks.getText()));
 
-        float kwota = Float.parseFloat(transferAmount.getText());
-        int toID = new User().getIdFromDB(Integer.parseInt(transferToIndeks.getText()));
-        Transaction t = new Transaction(kwota, user.getId(),  toID);
-        t.addTransactionToDB();
-        transferAmount.setText("");
-        transferToIndeks.setText("");
-        user.getUserBalanceFromDB();
-        showClientInfo();
+            if(kwota> user.getBalance()) { throw new RuntimeException("Brak środków na koncie!");}
+            if (toID == -500){ throw new RuntimeException("Nie znaleziono użytkownika o takim indeksie!");}
 
+            Transaction t = new Transaction(kwota, user.getId(), toID);
+            t.addTransactionToDB();
+            transferAmount.setText("");
+            transferToIndeks.setText("");
+            user.getUserBalanceFromDB();
+            showClientInfo();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     @FXML
     private void handleLogOut(ActionEvent event) throws IOException {
-
-        this.user = new User();
-
-        if (!this.user.isLoggedIn()) {
+        user = new User();
+        if (!user.isLoggedIn()) {
             final double[] xOffSet = {0};
             final double[] yOffSet = {0};
 
@@ -155,17 +132,16 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
             stage.setY(110);
             stage.setX(500);
             stage.show();
-
         }
     }
 
-    public class historyRecord{
-        private String from;
-        private String to;
-        private String amount;
-        private String date;
-        private String fromId;
-        private String toId;
+    public static class historyRecord{
+        private final String from;
+        private final String to;
+        private final String amount;
+        private final String date;
+        private final String fromId;
+        private final String toId;
 
         public historyRecord(String from, String to, String amount, String date, String fromId, String toId) {
 
@@ -195,10 +171,12 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
         }
 
         public String getAmount() {
+            DecimalFormat df = new DecimalFormat("#.00");
             if (Integer.parseInt(fromId) == user.getId()){
-                return (Float.parseFloat(amount)*-1)+" zł";
+
+                return df.format(Float.parseFloat(amount)*-1)+" zł";
             }
-            return amount+" zł";
+            return df.format(Float.parseFloat(amount))+" zł";
         }
 
         public String getDate() {
