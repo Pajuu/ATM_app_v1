@@ -12,6 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
@@ -32,44 +35,76 @@
             </Pane>
             <ToggleButton fx:id="btnLogowanie" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" selected="true" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Logowanie" textFill="WHITE">
                <font>
-                  <Font name="Candara Bold" size="16.0" />
+                  <Font name="Sitka Text Italic" size="16.0" />
                </font>
             </ToggleButton>
             <ToggleButton fx:id="btnRejestracja" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Rejestracja" textFill="WHITE">
                <font>
-                  <Font name="Candara Bold" size="16.0" />
+                  <Font name="Sitka Text Italic" size="16.0" />
                </font>
             </ToggleButton>
          </children>
       </VBox>
       <StackPane layoutX="175.0" prefHeight="559.0" prefWidth="371.0">
          <children>
-            <Pane fx:id="pRegisterForm" prefHeight="559.0" prefWidth="373.0" style="-fx-background-color: #030000;">
+            <Pane fx:id="pRegisterForm" prefHeight="559.0" prefWidth="373.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <HBox layoutX="112.0" layoutY="49.0" prefHeight="30.0" prefWidth="134.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Rejestracja">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rejestracja">
                            <font>
-                              <Font name="Candara Bold" size="27.0" />
+                              <Font name="Sitka Text Italic" size="27.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
-                  <Button fx:id="RegisterBtnZarejestruj" layoutX="134.0" layoutY="496.0" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 25;" text="Zarejestruj" textFill="WHITE">
+                  <Button fx:id="RegisterBtnZarejestruj" layoutX="134.0" layoutY="496.0" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="31.0" prefWidth="91.0" styleClass="btnMainApp" stylesheets="@../../../../css/styling.css" text="Zarejestruj" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Sitka Text Italic" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="RegisterClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #030000;" textFill="WHITE">
+                  <Button fx:id="RegisterClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" onMouseClicked="#handleClicks" size="20" text="" wrappingWidth="12.514243125915527" />
+                        <FontAwesomeIconView fill="#ff5c00" glyphName="CLOSE" onMouseClicked="#handleClicks" selectionFill="#ff5c00" size="20" text="" wrappingWidth="12.514243125915527" />
                      </graphic>
                   </Button>
-                  <Line endX="178.59991455078125" endY="-1.52587890625E-5" layoutX="180.0" layoutY="101.0" startX="-168.60000610351562" startY="-1.52587890625E-5" stroke="#7b249e" />
-                  <Line endX="178.59991455078125" layoutX="178.0" layoutY="481.0" startX="-168.60000610351562" stroke="#7b249e" />
+                  <Line endX="178.59991455078125" endY="-1.52587890625E-5" layoutX="178.0" layoutY="91.0" startX="-168.60000610351562" startY="-1.52587890625E-5">
+                     <stroke>
+                        <LinearGradient endX="0.08712121483051416" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke></Line>
+                  <Line endX="178.59991455078125" layoutX="178.0" layoutY="481.0" startX="-168.60000610351562">
+                     <stroke>
+                        <LinearGradient endX="0.05303032109231652" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke></Line>
                   <VBox layoutY="116.0" prefHeight="346.0" prefWidth="371.0">
                      <children>
-                        <TextField fx:id="RegisterTfNumerIndeksu" prefHeight="20.0" prefWidth="332.0" promptText="Numer indeksu" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <TextField fx:id="RegisterTfNumerIndeksu" prefHeight="20.0" prefWidth="332.0" promptText="Numer indeksu" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -77,7 +112,7 @@
                               <Insets left="15.0" right="15.0" top="15.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="RegisterTfNazwisko" prefHeight="20.0" prefWidth="332.0" promptText="Nazwisko" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <TextField fx:id="RegisterTfNazwisko" prefHeight="20.0" prefWidth="332.0" promptText="Nazwisko" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -85,7 +120,7 @@
                               <Insets left="15.0" right="15.0" top="40.0" />
                            </VBox.margin>
                         </TextField>
-                        <TextField fx:id="RegisterTfImie" prefHeight="20.0" prefWidth="332.0" promptText="Imię" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <TextField fx:id="RegisterTfImie" prefHeight="20.0" prefWidth="332.0" promptText="Imię" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -93,7 +128,7 @@
                               <Insets left="15.0" right="15.0" top="40.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField fx:id="RegisterTfHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <PasswordField fx:id="RegisterTfHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -101,7 +136,7 @@
                               <Insets left="15.0" right="15.0" top="40.0" />
                            </VBox.margin>
                         </PasswordField>
-                        <PasswordField fx:id="RegisterTfPowtorzHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <PasswordField fx:id="RegisterTfPowtorzHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -113,32 +148,30 @@
                   </VBox>
                </children>
             </Pane>
-            <Pane fx:id="pLoginForm" prefHeight="559.0" prefWidth="351.0" style="-fx-background-color: #030000;">
+            <Pane fx:id="pLoginForm" prefHeight="559.0" prefWidth="351.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <HBox layoutX="33.0" layoutY="89.0" prefHeight="30.0" prefWidth="291.0">
                      <children>
-                        <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w banku studenta!">
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w banku studenta!">
                            <font>
-                              <Font name="Candara Bold" size="27.0" />
+                              <Font name="Sitka Text Italic" size="27.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
-                  <Button fx:id="LoginBtnZaloguj" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="31.0" prefWidth="91.0" style="-fx-background-color: #7B249E; -fx-border-radius: 25;" text="Zaloguj" textFill="WHITE">
+                  <Button fx:id="LoginBtnZaloguj" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="31.0" prefWidth="91.0" styleClass="btnMainApp" stylesheets="@../../../../css/styling.css" text="Zaloguj" textFill="WHITE">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="Sitka Text Italic" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="LoginClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #030000;" textFill="WHITE">
+                  <Button fx:id="LoginClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
                      <graphic>
-                        <FontAwesomeIconView fill="WHITE" glyphName="CLOSE" onMouseClicked="#handleClicks" size="20" text="" wrappingWidth="12.514243125915527" />
+                        <FontAwesomeIconView fill="#ff5c00" glyphName="CLOSE" onMouseClicked="#handleClicks" selectionFill="#ff5c00" size="20" text="" wrappingWidth="12.514243125915527" />
                      </graphic>
                   </Button>
-                  <Line endX="174.5999755859375" endY="-1.52587890625E-5" layoutX="178.0" layoutY="162.0" startX="-162.19998168945312" stroke="#7b249e" />
-                  <Line endX="174.5999755859375" layoutX="178.0" layoutY="397.0" startX="-162.19998168945312" stroke="#7b249e" />
                   <VBox layoutY="163.0" prefHeight="233.0" prefWidth="371.0">
                      <children>
-                        <TextField fx:id="LoginTfNumerIndeksu" prefHeight="31.0" prefWidth="350.0" promptText="Numer indeksu" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <TextField fx:id="LoginTfNumerIndeksu" prefHeight="31.0" prefWidth="350.0" promptText="Numer indeksu" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -146,7 +179,7 @@
                               <Insets left="15.0" right="15.0" top="50.0" />
                            </VBox.margin>
                         </TextField>
-                        <PasswordField fx:id="LoginTHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields" stylesheets="@../../../../css/styling.css">
+                        <PasswordField fx:id="LoginTHaslo" prefHeight="31.2" prefWidth="332.0" promptText="Hasło" styleClass="textFields2" stylesheets="@../../../../css/styling.css">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -156,6 +189,42 @@
                         </PasswordField>
                      </children>
                   </VBox>
+                  <Line endX="160.7000732421875" endY="-1.52587890625E-5" layoutX="178.0" layoutY="130.0" startX="-168.60000610351562" startY="-1.52587890625E-5">
+                     <stroke>
+                        <LinearGradient endX="0.08712121483051416" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                  </Line>
+                  <Line endX="160.7000732421875" endY="-1.52587890625E-5" layoutX="178.0" layoutY="425.0" startX="-168.60000610351562" startY="-1.52587890625E-5">
+                     <stroke>
+                        <LinearGradient endX="0.08712121483051416" endY="1.0" startX="1.0">
+                           <stops>
+                              <Stop>
+                                 <color>
+                                    <Color />
+                                 </color>
+                              </Stop>
+                              <Stop offset="1.0">
+                                 <color>
+                                    <Color red="1.0" green="1.0" blue="1.0" />
+                                 </color>
+                              </Stop>
+                           </stops>
+                        </LinearGradient>
+                     </stroke>
+                  </Line>
                </children>
             </Pane>
          </children>

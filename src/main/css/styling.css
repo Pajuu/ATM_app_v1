@@ -1,67 +1,115 @@
 .btnLogowanie
 {
--fx-background-color: #7B249E;
+    -fx-background-color: #FF5C00;
 }
 .btnLogowanie:hover
 {
--fx-background-color: #B33BE3;
+    -fx-background-color: #FF7629;
 }
 .btnLogowanie:pressed
 {
--fx-background-color: #C945FD;
+    -fx-background-color: #FF823B;
 }
 .btnLogowanie:selected
 {
--fx-background-color: #6E218D;
+    -fx-background-color: #FF823B;
 }
 
 
 .background
 {
--fx-background-color: linear-gradient(to bottom, #7B249E 45%, #030000);
+    -fx-background-color: linear-gradient(to bottom,  #FF5C00 54%, #340707)
+}
+
+.background2
+{
+    -fx-background-color: linear-gradient(to right,  #FF5C00 54%, #340707);
 }
 
 .textFields
 {
--fx-border-color:  #7B249E;
--fx-background-color:  #030000;
--fx-background-insets: 0;
--fx-border-radius: 20;
--fx-highlight-fill: null;
--fx-highlight-text-fill: null;
--fx-prompt-text-fill: white;
--fx-text-fill: white;
-}
-
-
-.tab
-{
-	-fx-primary-color: #007acc;
-	-fx-secondary-color: #4B6EAF;
-
-	-fx-focus-color: #4B6EAF;
+    -fx-border-color:  #7B249E;
+    -fx-background-color:  #030000;
+    -fx-background-insets: 0;
+    -fx-border-radius: 20;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
 }
 
 .tab-header-area .tab-header-background
 {
- 	-fx-background-color: #7B249E;
+ 	-fx-background-color: #FF5C00;
 }
 
 .tab-pane .tab:selected
 {
-	-fx-background-color: #4B6EAF;
-	-fx-background-insets: 0 0 0 0;
-	-fx-background-radius: 0 0 0 0;
+	-fx-background-color: #DE5000;
+
 }
 
 .tab-pane
  {
 	-fx-background-color: transparent;
 	-fx-tab-min-width: 115px;
-	-fx-tab-min-height: 40px;
+	-fx-tab-min-height: 42px;
 	-fx-tab-max-height: 66px;
 }
 .tab-pane .tab
 {
 	-fx-background-color: transparent;
+}
+
+.tab .tab-label
+{
+ 	-fx-alignment: CENTER;
+	-fx-text-fill: white;
+	-fx-font-weight: bold;
+	-fx-padding: 0 10 0 10;
+}
+
+.tab-pane:focused .tab-header-area .headers-region .tab:selected .focus-indicator
+{
+ 	-fx-border-width: 0;
+	-fx-border-insets: 0 0 0 0;
+	-fx-border-radius: 0;
+}
+
+.textFields2
+{
+    -fx-border-color:  #FF5C00;
+    -fx-background-color:  #FFFFFF;
+    -fx-background-insets: 0;
+    -fx-border-radius: 20;
+    -fx-highlight-fill: null;
+    -fx-highlight-text-fill: null;
+    -fx-prompt-text-fill: black;
+    -fx-text-fill: black;
+}
+
+.btnMainApp
+{
+    -fx-background-color:  #FF5C00;
+}
+.btnMainApp:hover
+{
+    -fx-background-color: #FF7629;
+}
+.btnMainApp:pressed
+{
+    -fx-background-color: #FF823B;
+}
+
+.tableView
+{
+    -fx-background-color: transparent;
+}
+
+.tableView .column-header {
+    -fx-background-color: transparent;
+}
+
+.tableView .column-header-background{
+    -fx-background-color: transparent
 }

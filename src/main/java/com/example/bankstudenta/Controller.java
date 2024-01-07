@@ -16,6 +16,7 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import User.User;
 import javafx.scene.text.Text;
@@ -93,6 +94,8 @@ public class Controller implements Initializable {
     @FXML
     private Button AppBtnWithdrawal;
 
+    @FXML
+    private Button AppBtnLogOut;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -146,6 +149,39 @@ public class Controller implements Initializable {
         });
         scene = new Scene(root);
         stage.setScene(scene);
+        stage.setY(150);
+        stage.setX(400);
+        stage.show();
+    }
+
+    @FXML
+    private void handleLogOut(ActionEvent event) throws IOException{
+
+        //this.u.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
+
+        final double[] xOffSet = {0};
+        final double[] yOffSet = {0};
+
+        root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        root.setOnMousePressed(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                xOffSet[0] = mouseEvent.getX();
+                yOffSet[0] = mouseEvent.getY();
+            }
+        });
+        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent mouseEvent) {
+                stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
+                stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
+            }
+        });
+        scene = new Scene(root);
+        stage.setScene(scene);
+        stage.setY(110);
+        stage.setX(500);
         stage.show();
     }
 }
