@@ -1,4 +1,5 @@
 package com.example.bankstudenta;
+import User.User;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
@@ -41,10 +42,6 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
-
-
         launch();
-
-
     }
 }

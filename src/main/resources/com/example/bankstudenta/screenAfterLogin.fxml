@@ -6,42 +6,84 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="807.0" styleClass="background" stylesheets="@../../../../css/styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane  maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="807.0" style="-fx-background-color: #FFFFFF;" stylesheets="@../../../../css/styling.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bankstudenta.ControllerAfterLogin">
    <children>
-      <Pane layoutX="-5.0" prefHeight="64.0" prefWidth="813.0">
+      <Pane layoutX="-4.0" prefHeight="106.0" prefWidth="814.0" styleClass="background2">
          <children>
-            <Text fill="WHITE" layoutX="322.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj" wrappingWidth="61.1982421875">
+            <Text fx:id="witaj_id" fill="WHITE" layoutX="91.0" layoutY="38.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj" wrappingWidth="82.7982177734375">
                <font>
-                  <Font size="24.0" />
+                  <Font name="Sitka Text" size="26.0" />
                </font>
             </Text>
-            <Text fx:id="name_and_index" layoutX="400.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="182.39999389648438" />
-            <Text fill="WHITE" layoutX="697.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępne środki" wrappingWidth="109.719482421875" />
-            <Text fx:id="students_money" layoutX="674.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="125.336669921875" />
+            <Text fx:id="name_and_index" fill="WHITE" layoutX="174.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loding..." wrappingWidth="182.39999389648438" />
+            <Text fill="WHITE" layoutX="690.0" layoutY="20.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dostępne środki" wrappingWidth="109.719482421875">
+               <font>
+                  <Font name="Sitka Text" size="14.0" />
+               </font></Text>
+            <Text fx:id="students_money" layoutX="674.0" layoutY="44.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Loding..." wrappingWidth="125.336669921875" />
+            <Button fx:id="AppBtnLogOut" layoutX="29.0" layoutY="16.0" mnemonicParsing="false" onAction="#handleLogOut" prefHeight="30.0" prefWidth="46.0" styleClass="btnMainApp">
+               <graphic>
+                  <ImageView fitHeight="22.0" fitWidth="24.0" nodeOrientation="RIGHT_TO_LEFT">
+                     <image>
+                        <Image url="@icons8-log-out-50%20(1).png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </Pane>
-      <TabPane layoutX="-5.0" layoutY="64.0" prefHeight="382.0" prefWidth="430.0" styleClass="tab-header-background" tabClosingPolicy="UNAVAILABLE">
+      <TabPane layoutX="-4.0" layoutY="56.0" prefHeight="385.0" prefWidth="438.0" styleClass="tab-header-background" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab text="Wpłata">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="329.0" prefWidth="458.0">
                      <children>
-                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.2" text="Wpłać" />
-                        <TextField layoutX="101.0" layoutY="127.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                        <Button fx:id="AppBtnPayment" onAction="#handleDeposit" layoutX="325.0" layoutY="261.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="btnMainApp" text="Wpłać" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Sitka Text Italic" size="12.0" />
+                           </font></Button>
+                        <TextField fx:id="DepositText" layoutX="101.0" layoutY="121.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" styleClass="textFields2" />
+                        <Line endX="-100.0" endY="336.8000183105469" layoutX="510.0" layoutY="2.0" opacity="0.45" startX="-100.0">
+                           <stroke>
+                              <LinearGradient endX="1.0" endY="0.943181811408563">
+                                 <stops>
+                                    <Stop>
+                                       <color>
+                                          <Color opacity="0.711246132850647" />
+                                       </color>
+                                    </Stop>
+                                    <Stop offset="1.0">
+                                       <color>
+                                          <Color red="1.0" green="1.0" blue="1.0" />
+                                       </color>
+                                    </Stop>
+                                 </stops>
+                              </LinearGradient>
+                           </stroke>
+                        </Line>
                      </children></AnchorPane>
             </content>
           </Tab>
             <Tab text="Wypłata">
                <content>
-                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="438.0">
                      <children>
-                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" text="Wypłać" />
-                        <TextField layoutX="101.0" layoutY="127.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                        <Button fx:id="AppBtnWithdrawal" onAction="#handleWithdraw" layoutX="325.0" layoutY="261.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="btnMainApp" text="Wypłać" textAlignment="CENTER" textFill="WHITE">
+                           <font>
+                              <Font name="Sitka Text Italic" size="12.0" />
+                           </font></Button>
+                        <TextField fx:id="WithdrawText" layoutX="101.0" layoutY="121.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" styleClass="textFields2" />
                      </children></AnchorPane>
                </content>
             </Tab>
@@ -49,26 +91,29 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="310.0" prefWidth="278.0">
                      <children>
-                        <TextField layoutX="101.0" layoutY="170.0" prefHeight="42.0" prefWidth="190.0" promptText="Opis" />
-                        <Button layoutX="171.0" layoutY="263.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="55.2" text="Przelej" />
-                        <TextField layoutX="101.0" layoutY="78.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" />
+                        <TextField fx:id="transferToIndeks" layoutX="101.0" layoutY="160.0" prefHeight="42.0" prefWidth="190.0" promptText="Indeks odbiorcy" styleClass="textFields2" />
+                        <Button fx:id="AppBtnTransfer" onAction="#handleTransfer" layoutX="325.0" layoutY="261.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="65.0" styleClass="btnMainApp" text="Przelej" textFill="WHITE">
+                           <font>
+                              <Font name="Sitka Text Italic" size="12.0" />
+                           </font></Button>
+                        <TextField fx:id="transferAmount" layoutX="101.0" layoutY="68.0" prefHeight="42.0" prefWidth="190.0" promptText="Kwota" styleClass="textFields2" />
                      </children></AnchorPane>
             </content>
           </Tab>
         </tabs>
       </TabPane>
-      <TableView layoutX="391.0" layoutY="137.0" prefHeight="306.0" prefWidth="416.0">
+      <TableView fx:id="transaction_history_table" layoutX="392.0" layoutY="149.0" prefHeight="292.0" prefWidth="416.0" styleClass="tableView">
         <columns>
-          <TableColumn prefWidth="92.80001831054688" text="Data" />
-          <TableColumn prefWidth="220.00003051757812" text="Opis" />
-            <TableColumn prefWidth="99.199951171875" text="Kwota" />
+            <TableColumn fx:id="historyDateCol" prefWidth="92.80001831054688" text="Data" />
+            <TableColumn fx:id="historyToCol" prefWidth="220.00003051757812" text="Do" />
+            <TableColumn fx:id="historyAmountCol" prefWidth="99.199951171875" text="Kwota" />
         </columns>
       </TableView>
-      <Pane layoutX="399.0" layoutY="91.0" prefHeight="42.0" prefWidth="408.0">
+      <Pane layoutX="392.0" layoutY="105.0" prefHeight="46.0" prefWidth="416.0">
          <children>
-            <Text layoutX="1.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historia">
+            <Text layoutX="26.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Historia">
                <font>
-                  <Font size="18.0" />
+                  <Font name="Sitka Text" size="18.0" />
                </font>
             </Text>
          </children>

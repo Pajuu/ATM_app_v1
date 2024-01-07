@@ -1,4 +1,5 @@
 package com.example.bankstudenta;
+import Transaction.Transaction;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -16,17 +17,22 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import User.User;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 
 public class Controller implements Initializable {
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
-    private User u = new User();
+    public Stage stage;
+    public Scene scene;
+    public Parent root;
+    public static User user = new User();
+
+
+
     @FXML
     private Button LoginBtnZaloguj;
 
@@ -72,27 +78,6 @@ public class Controller implements Initializable {
     @FXML
     private Pane pRegisterForm;
 
-    //Tekst skladajacy sie z imienia i indeksu z bazy danych
-    @FXML
-    private Text name_and_index;
-
-    //aktualny stan konta z bazy danych
-    @FXML
-    private Text students_money;
-
-    //tabelka z historia wszystkich transakcji
-    @FXML
-    private TableView<?> transaction_history_table;
-
-    @FXML
-    private Button AppBtnPayment;
-
-    @FXML
-    private Button AppBtnTransfer;
-
-    @FXML
-    private Button AppBtnWithdrawal;
-
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -118,34 +103,43 @@ public class Controller implements Initializable {
 
     @FXML
     private void handleRegistration() {
-        this.u.addUserToDB(Integer.parseInt(RegisterTfNumerIndeksu.getText()), RegisterTfImie.getText(), RegisterTfNazwisko.getText(), RegisterTfHaslo.getText(), RegisterTfPowtorzHaslo.getText());
+        this.user.addUserToDB(Integer.parseInt(RegisterTfNumerIndeksu.getText()), RegisterTfImie.getText(), RegisterTfNazwisko.getText(), RegisterTfHaslo.getText(), RegisterTfPowtorzHaslo.getText());
     }
     @FXML
     private void handleLogin(ActionEvent event) throws IOException{
 
-        //this.u.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
+        this.user.loginUser(Integer.parseInt(LoginTfNumerIndeksu.getText()), LoginTHaslo.getText());
+        if (this.user.isLoggedIn()){
+            final double[] xOffSet = {0};
+            final double[] yOffSet = {0};
 
-        final double[] xOffSet = {0};
-        final double[] yOffSet = {0};
 
-        root = FXMLLoader.load(getClass().getResource("screenAfterLogin.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        root.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                xOffSet[0] = mouseEvent.getX();
-                yOffSet[0] = mouseEvent.getY();
-            }
-        });
-        root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent mouseEvent) {
-                stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
-                stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
-            }
-        });
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
+            root = FXMLLoader.load(getClass().getResource("screenAfterLogin.fxml"));
+            stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    xOffSet[0] = mouseEvent.getX();
+                    yOffSet[0] = mouseEvent.getY();
+                }
+            });
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
+                    stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
+                }
+            });
+
+
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setY(150);
+            stage.setX(400);
+            stage.show();
+
+        }
+
     }
+
 }

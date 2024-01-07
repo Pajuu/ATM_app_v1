@@ -1,0 +1,210 @@
+package com.example.bankstudenta;
+import Transaction.Transaction;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
+
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.Objects;
+import java.util.ResourceBundle;
+import User.User;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
+//Tekst skladajacy sie z imienia i indeksu z bazy danych
+
+import javafx.fxml.FXML;
+
+
+
+
+public class ControllerAfterLogin extends Controller implements Initializable  {
+    @FXML
+    private Text name_and_index;
+
+    //aktualny stan konta z bazy danych
+    @FXML
+    private Text students_money;
+
+    //tabelka z historia wszystkich transakcji
+    @FXML
+    private TableView<historyRecord> transaction_history_table;
+
+    @FXML
+    private TableColumn historyDateCol, historyFromCol, historyToCol, historyAmountCol;
+
+    @FXML
+    private Button AppBtnPayment;
+
+    @FXML
+    private Button AppBtnTransfer;
+
+    @FXML
+    private Button AppBtnal;
+
+    @FXML
+    private TextField WithdrawText;
+
+    @FXML
+    private TextField DepositText;
+
+    @FXML
+    private TextField transferToIndeks;
+
+    @FXML
+    private TextField transferAmount;
+
+    private void showClientInfo(){
+        this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex());
+        this.students_money.setText(user.getBalance()+" zł");
+        this.transaction_history_table.getItems().clear();
+
+
+        historyDateCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("date"));
+        historyAmountCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("amount"));
+        historyToCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("to"));
+
+
+        for (String[] element:user.getUserTransferHistory() ) {
+            historyRecord r = new historyRecord(element[1]+" "+element[2],element[3]+" "+element[4], element[5], element[0], element[6], element[7]);
+            this.transaction_history_table.getItems().add(r);
+        }
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        showClientInfo();
+    }
+
+    @FXML
+    private void handleWithdraw() {
+        float kwota = Float.parseFloat(WithdrawText.getText());
+        Transaction t = new Transaction(kwota, user.getId(), 0);
+        t.addTransactionToDB();
+        WithdrawText.setText("");
+        user.getUserBalanceFromDB();
+        showClientInfo();
+    }
+    @FXML
+    private void handleDeposit() {
+        float kwota = Float.parseFloat(DepositText.getText());
+        Transaction t = new Transaction(kwota, 0,  user.getId());
+        t.addTransactionToDB();
+        DepositText.setText("");
+        user.getUserBalanceFromDB();
+        showClientInfo();
+    }
+
+    @FXML
+    private void handleTransfer() {
+
+        float kwota = Float.parseFloat(transferAmount.getText());
+        int toID = new User().getIdFromDB(Integer.parseInt(transferToIndeks.getText()));
+        Transaction t = new Transaction(kwota, user.getId(),  toID);
+        t.addTransactionToDB();
+        transferAmount.setText("");
+        transferToIndeks.setText("");
+        user.getUserBalanceFromDB();
+        showClientInfo();
+
+    }
+
+    @FXML
+    private void handleLogOut(ActionEvent event) throws IOException {
+
+        this.user = new User();
+
+        if (!this.user.isLoggedIn()) {
+            final double[] xOffSet = {0};
+            final double[] yOffSet = {0};
+
+            root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("mainMenu.fxml")));
+            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            root.setOnMousePressed(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    xOffSet[0] = mouseEvent.getX();
+                    yOffSet[0] = mouseEvent.getY();
+                }
+            });
+            root.setOnMouseDragged(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent mouseEvent) {
+                    stage.setX(mouseEvent.getScreenX() - xOffSet[0]);
+                    stage.setY(mouseEvent.getScreenY() - yOffSet[0]);
+                }
+            });
+            scene = new Scene(root);
+            stage.setScene(scene);
+            stage.setY(110);
+            stage.setX(500);
+            stage.show();
+
+        }
+    }
+
+    public class historyRecord{
+        private String from;
+        private String to;
+        private String amount;
+        private String date;
+        private String fromId;
+        private String toId;
+
+        public historyRecord(String from, String to, String amount, String date, String fromId, String toId) {
+
+            this.from = from;
+            this.to = to;
+            this.amount = amount;
+            this.date = date;
+            this.fromId = fromId;
+            this.toId = toId;
+        }
+
+        public String getFrom() {
+            return from;
+        }
+
+        public String getTo() {
+            if(toId.equals(String.valueOf(user.getId())) && !fromId.equals("0")){
+                return "Przelew od "+from;
+            }
+            else if (fromId.equals("0")){
+                return "Wpłata";
+            } else if (toId.equals("0")) {
+                return "Wypłata";
+            } else {
+                return "Przelew do "+to;
+            }
+        }
+
+        public String getAmount() {
+            if (Integer.parseInt(fromId) == user.getId()){
+                return (Float.parseFloat(amount)*-1)+" zł";
+            }
+            return amount+" zł";
+        }
+
+        public String getDate() {
+            LocalDate a = LocalDate.parse(date.substring(0,date.length()-9));
+
+            return String.valueOf(DateTimeFormatter.ofPattern("dd.MM.yyyy").format(a));
+        }
+    }
+}

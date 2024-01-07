@@ -15,7 +15,7 @@ public class DB_Connection {
 
     public Connection makeConnection(){
         try{
-            return DriverManager.getConnection("jdbc:mysql://atmproject_swimmingon:5d982b922928dd5c252ad1a7f6f269bcf6eed610@x2q.h.filess.io:3307/atmproject_swimmingon", "atmproject_swimmingon", "5d982b922928dd5c252ad1a7f6f269bcf6eed610");
+            return DriverManager.getConnection("jdbc:mysql://atm_fedsplitin:63f30ae389d224406d89e9b342c66eee2040fa10@swb.h.filess.io:3307/atm_fedsplitin", "atm_fedsplitin", "63f30ae389d224406d89e9b342c66eee2040fa10");
 
         }catch (Exception e){
             System.out.println(e.getMessage());
