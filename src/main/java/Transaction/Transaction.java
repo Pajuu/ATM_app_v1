@@ -17,10 +17,10 @@ public class Transaction {
     }
 
     //Methods
-    private boolean addTransactionToDB(){
+    public boolean addTransactionToDB(){
         try{
             Connection connection = new DB_Connection().makeConnection();
-            String query = "INSERT INTO transactions (from_index, to_index, amount, date) "
+            String query = "INSERT INTO transactions (from_id, to_id, amount, date) "
                     +"values (?,?,?,?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setInt(1, this.fromIndex);

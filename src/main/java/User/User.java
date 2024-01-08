@@ -1,11 +1,10 @@
 package User;
 import DB.DB_Connection;
 import org.mindrot.jbcrypt.BCrypt;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
+
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class User {
@@ -16,8 +15,6 @@ public class User {
     private String first_name, last_name;
 
     //Constructors
-
-
     public User() {
     }
 
@@ -61,11 +58,12 @@ public class User {
                     this.last_name = resultSet.getString("last_name");
                     this.index = resultSet.getInt("student_id");
                     this.balance = this.getUserBalanceFromDB();
-                }else{
-                    throw new Exception("Złe hasło lub indeks");
                 }
+                connection.close();
+            }else{
+                connection.close();
+                throw new Exception("Zły indeks lub hasło!");
             }
-            connection.close();
         }catch (Exception e){
             System.out.println( e.getMessage());
         }
@@ -85,35 +83,37 @@ public class User {
             return this.balance;
         }catch (Exception e){
             System.out.println(e.getMessage());
+            return null;
         }
-        return null;
     }
 
-    public List<String> getUserTransferHistory() {
+    public List<String[]> getUserTransferHistory() {
         try{
             if(!this.isLoggedIn()) throw new Exception("Niezalogowany");
-            List<String> transactions = new ArrayList<>();
+            List<String[]> transactions = new ArrayList<>();
             Connection connection = new DB_Connection().makeConnection();
             String query = "SELECT \n" +
                     "t.amount, \n" +
                     "t.date, \n" +
+                    "f_u .id as from_id, \n" +
                     "f_u .first_name as from_name, \n" +
                     "f_u .last_name as from_last_name,\n" +
+                    "t_u .id as to_id, \n" +
                     "t_u .first_name as to_name, \n" +
                     "t_u .last_name as to_last_name\n" +
                     "FROM transactions as t\n" +
                     "Inner JOIN users as f_u ON t.from_id = f_u .id\n" +
                     "Inner JOIN users as t_u ON t.to_id = t_u .id\n" +
-                    "WHERE t.from_id = "+this.getId()+" or t.to_id = "+this.getId();
+                    "WHERE t.from_id = "+this.getId()+" or t.to_id = "+this.getId()+"\n" +
+                    "ORDER BY t.date";
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery(query);
             while (rs.next()){
-                String record = rs.getString("date")+"   | OD: "+rs.getString("from_name")+" "+rs.getString("from_last_name")+
-                        " ------> DO: "+rs.getString("to_name")+" "+rs.getString("to_last_name")+
-                        " |     "+rs.getString("amount")+"zł ";
+                String[] record = {rs.getString("date"), rs.getString("from_name"),rs.getString("from_last_name"), rs.getString("to_name"),rs.getString("to_last_name"),rs.getString("amount"), rs.getString("from_id"),rs.getString("to_id"),};
                 transactions.add(record);
             }
             connection.close();
+            Collections.reverse(transactions);
             return transactions;
         }catch (Exception e) {
             System.out.println(e.getMessage());
@@ -121,6 +121,25 @@ public class User {
         }
     }
 
+    public int getIdFromDB(int student_id){
+        int result;
+        try{
+            Connection connection = new DB_Connection().makeConnection();
+            String query = "SELECT id FROM users WHERE student_id ="+student_id;
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(query);
+            if (resultSet.next()){
+                result = resultSet.getInt("id");
+                return result;
+            }
+            connection.close();
+
+            throw new RuntimeException("Nie znaleziono użytkownika o takim indeksie (User.java)");
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+            return -500;
+        }
+    }
 
     //getters
     public int getIndex() {
@@ -146,7 +165,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "index=" + index +
+                "id=" + id +
+                ", index=" + index +
                 ", balance=" + balance +
                 ", first_name='" + first_name + '\'' +
                 ", last_name='" + last_name + '\'' +
