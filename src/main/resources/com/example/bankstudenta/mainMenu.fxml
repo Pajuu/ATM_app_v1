@@ -25,22 +25,22 @@
          <children>
             <Pane prefHeight="153.0" prefWidth="182.0">
                <children>
-                  <FontAwesomeIconView fill="WHITE" glyphName="BANK" layoutX="14.0" layoutY="87.0" size="30" text="" />
-                  <Label graphicTextGap="5.0" layoutX="48.0" layoutY="64.0" text="BankStudenta" textFill="WHITE">
+                  <FontAwesomeIconView fill="WHITE" glyphName="BANK" layoutX="6.0" layoutY="87.0" size="30" text="" />
+                  <Label graphicTextGap="5.0" layoutX="41.0" layoutY="63.0" style="-fx-font-weight: 700;" text="BankStudenta" textFill="WHITE">
                      <font>
-                        <Font name="Candara Bold" size="20.0" />
+                        <Font name="" size="20.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
             <ToggleButton fx:id="btnLogowanie" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" selected="true" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Logowanie" textFill="WHITE">
                <font>
-                  <Font name="Sitka Text Italic" size="16.0" />
+                  <Font name="" size="16.0" />
                </font>
             </ToggleButton>
             <ToggleButton fx:id="btnRejestracja" mnemonicParsing="false" onAction="#handleClicks" prefHeight="42.0" prefWidth="211.0" styleClass="btnLogowanie" stylesheets="@../../../../css/styling.css" text="Rejestracja" textFill="WHITE">
                <font>
-                  <Font name="Sitka Text Italic" size="16.0" />
+                  <Font name="" size="16.0" />
                </font>
             </ToggleButton>
          </children>
@@ -53,14 +53,14 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Rejestracja">
                            <font>
-                              <Font name="Sitka Text Italic" size="27.0" />
+                              <Font name="" size="27.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
                   <Button fx:id="RegisterBtnZarejestruj" layoutX="134.0" layoutY="496.0" mnemonicParsing="false" onAction="#handleRegistration" prefHeight="31.0" prefWidth="91.0" styleClass="btnMainApp" stylesheets="@../../../../css/styling.css" text="Zarejestruj" textFill="WHITE">
                      <font>
-                        <Font name="Sitka Text Italic" size="14.0" />
+                        <Font name="" size="14.0" />
                      </font>
                   </Button>
                   <Button fx:id="RegisterClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">
@@ -154,14 +154,14 @@
                      <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Witaj w banku studenta!">
                            <font>
-                              <Font name="Sitka Text Italic" size="27.0" />
+                              <Font name="" size="27.0" />
                            </font>
                         </Text>
                      </children>
                   </HBox>
                   <Button fx:id="LoginBtnZaloguj" layoutX="133.0" layoutY="458.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="31.0" prefWidth="91.0" styleClass="btnMainApp" stylesheets="@../../../../css/styling.css" text="Zaloguj" textFill="WHITE">
                      <font>
-                        <Font name="Sitka Text Italic" size="14.0" />
+                        <Font name="" size="14.0" />
                      </font>
                   </Button>
                   <Button fx:id="LoginClose" layoutX="340.0" layoutY="-1.0" mnemonicParsing="false" onAction="#handleClicks" prefHeight="30.0" prefWidth="23.0" style="-fx-background-color: #FFFFFF;" textFill="WHITE">

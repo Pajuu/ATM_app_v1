@@ -1,5 +1,4 @@
 package com.example.bankstudenta;
-
 import Transaction.Transaction;
 import User.User;
 import javafx.event.ActionEvent;
@@ -14,7 +13,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -37,10 +35,11 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
     private TextField WithdrawText, DepositText, transferToIndeks, transferAmount;
 
 
+
     private void showClientInfo(){
         DecimalFormat df = new DecimalFormat("#.00");
 
-        this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex());
+        this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex()+"!");
         this.students_money.setText( df.format(user.getBalance())+" zł");
         this.transaction_history_table.getItems().clear();
 
@@ -125,12 +124,16 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
             });
             scene = new Scene(root);
             stage.setScene(scene);
-            stage.setY(110);
-            stage.setX(500);
+            stage.setY(150);
+            stage.setX(675);
             stage.show();
         }
     }
 
+    @FXML
+    private void handleRefresh(){
+        showClientInfo();
+    }
     public static class historyRecord{
         private final String from;
         private final String to;

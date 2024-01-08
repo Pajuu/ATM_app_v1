@@ -25,9 +25,11 @@ public class Main extends Application {
             primaryStage.setY(mouseEvent.getScreenY() - yOffSet);
         });
 
+
         primaryStage.setTitle("BankStudenta");
         primaryStage.initStyle(StageStyle.UNDECORATED);
-        primaryStage.setScene(new Scene(root));
+        Scene s = new Scene(root);
+        primaryStage.setScene(s);
         primaryStage.show();
 
     }

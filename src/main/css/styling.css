@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.custom-font {
+    -fx-font-family: "Roboto";
+}
+
+.amount-col{
+    -fx-alignment: CENTER-RIGHT;
+}
+
 .btnLogowanie
 {
     -fx-background-color: #FF5C00;
@@ -90,6 +100,7 @@
 
 .btnMainApp
 {
+    -fx-cursor: hand;
     -fx-background-color:  #FF5C00;
 }
 .btnMainApp:hover
@@ -106,10 +117,66 @@
     -fx-background-color: transparent;
 }
 
-.tableView .column-header {
+.tableView .column-header
+{
     -fx-background-color: transparent;
 }
 
-.tableView .column-header-background{
+.tableView .column-header-background
+{
     -fx-background-color: transparent
 }
+
+
+.tableView .table-cell
+{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+
+}
+
+#historyAmountCol .table-column {
+  -fx-alignment: CENTER-RIGHT;
+}
+
+.table-row-cell: selected
+{
+    -fx-background-color: #FF5C00;
+    -fx-text-background-color: white;
+}
+
+.tableView .virtual-flow .scroll-bar:vertical,
+.tableView .virtual-flow .scroll-bar:vertical .track,
+.tableView .virtual-flow .scroll-bar:vertical .track-background,
+{
+    -fx-background-color: transparent;
+}
+.scroll-bar:vertical {
+    -fx-pref-width: 6;
+}
+
+.tableView .virtual-flow .scroll-bar .increment-button,
+.tableView .virtual-flow .scroll-bar .decrement-button
+{
+    -fx-opacity: 0;
+    -fx-padding: 2;
+}
+
+.tableView .virtual-flow .scroll-bar:vertical .thumb
+{
+    -fx-background-color:  linear-gradient(to bottom, #FF5C00 75%, #FFF2EA);
+}
+
+.table-view .corner
+{
+    -fx-background-color: transparent;
+}
+
+.button-refresh{
+    -fx-cursor: hand;
+}
+
+.tab-button:hover{
+    -fx-cursor: hand;
+}
+

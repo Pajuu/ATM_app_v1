@@ -94,8 +94,8 @@ public class Controller implements Initializable {
 
             scene = new Scene(root);
             stage.setScene(scene);
-            stage.setY(150);
-            stage.setX(400);
+            stage.setY(200);
+            stage.setX(550);
             stage.show();
 
         }
