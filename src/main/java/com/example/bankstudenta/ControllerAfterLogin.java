@@ -5,6 +5,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
@@ -40,7 +42,7 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
         DecimalFormat df = new DecimalFormat("#.00");
 
         this.name_and_index.setText(user.getFirst_name()+" "+user.getIndex()+"!");
-        this.students_money.setText( df.format(user.getBalance())+" zł");
+        this.students_money.setText( df.format(user.getUserBalanceFromDB())+" zł");
         this.transaction_history_table.getItems().clear();
 
         historyDateCol.setCellValueFactory(new PropertyValueFactory<historyRecord, String>("date"));
@@ -124,9 +126,12 @@ public class ControllerAfterLogin extends Controller implements Initializable  {
             });
             scene = new Scene(root);
             stage.setScene(scene);
-            stage.setY(150);
-            stage.setX(675);
+
             stage.show();
+            Rectangle2D primScreenBounds = Screen.getPrimary().getVisualBounds();
+            stage.setX((primScreenBounds.getWidth() - stage.getWidth()) / 2);
+            stage.setY((primScreenBounds.getHeight() - stage.getHeight()) / 2);
+
         }
     }
 
